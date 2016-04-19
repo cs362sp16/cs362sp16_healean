@@ -1,4 +1,3 @@
-
 dominion/*.o
-dominion/.idea/*
 dominion/*.gcno
+dominion/.idea/
