@@ -602,7 +602,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     int j;
     int k;
     int x;
-    int index;
+    /*int index;*/
     int currentPlayer = whoseTurn(state);
     int nextPlayer = currentPlayer + 1;
 
@@ -752,37 +752,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return 0;
 
         case remodel:
-            j = state->hand[currentPlayer][choice1];  //store card we will trash
-
-            if ((getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2)) {
-                return -1;
-            }
-
-            gainCard(choice2, state, 0, currentPlayer);
-
-            //discard card from hand
-            discardCard(handPos, currentPlayer, state, 0);
-
-            //discard trashed card
-            for (i = 0; i < state->handCount[currentPlayer]; i++) {
-                if (state->hand[currentPlayer][i] == j) {
-                    discardCard(i, currentPlayer, state, 0);
-                    break;
-                }
-            }
-
-
-            return 0;
+            return remodelLogic(currentPlayer, state, handPos, choice1, choice2);
 
         case smithy:
-            //+3 Cards
-            for (i = 0; i < 3; i++) {
-                drawCard(currentPlayer, state);
-            }
+            return smithyLogic(currentPlayer, state, handPos);
 
-            //discard card from hand
-            discardCard(handPos, currentPlayer, state, 0);
-            return 0;
 
         case village:
             //+1 Card
@@ -1032,7 +1006,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return 0;
 
         case cutpurse:
-
             updateCoins(currentPlayer, state, 2);
             for (i = 0; i < state->numPlayers; i++) {
                 if (i != currentPlayer) {
@@ -1077,12 +1050,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return 0;
 
         case outpost:
-            //set outpost flag
-            state->outpostPlayed++;
-
-            //discard card
-            discardCard(handPos, currentPlayer, state, 0);
-            return 0;
+            return outpostLogic(currentPlayer, state, handPos);
 
         case salvager:
             //+1 buy
@@ -1100,41 +1068,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return 0;
 
         case sea_hag:
-            for (i = 0; i < state->numPlayers; i++) {
-                if (i != currentPlayer) {
-                    state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
-                    state->deckCount[i]--;
-                    state->discardCount[i]++;
-                    state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
-                }
-            }
-            return 0;
+            return seahagLogic(currentPlayer, state, handPos);
+
 
         case treasure_map:
-            //search hand for another treasure_map
-            index = -1;
-            for (i = 0; i < state->handCount[currentPlayer]; i++) {
-                if (state->hand[currentPlayer][i] == treasure_map && i != handPos) {
-                    index = i;
-                    break;
-                }
-            }
-            if (index > -1) {
-                //trash both treasure cards
-                discardCard(handPos, currentPlayer, state, 1);
-                discardCard(index, currentPlayer, state, 1);
+            return treasuremapLogic(currentPlayer, state, handPos);
 
-                //gain 4 Gold cards
-                for (i = 0; i < 4; i++) {
-                    gainCard(gold, state, 1, currentPlayer);
-                }
-
-                //return success
-                return 1;
-            }
-
-            //no second treasure_map found in hand
-            return -1;
     }
 
     return -1;
@@ -1232,6 +1171,100 @@ int updateCoins(int player, struct gameState *state, int bonus) {
     return 0;
 }
 
+// Smithy Card Logic
+int smithyLogic(int currentPlayer, struct gameState *state, int handPos){
+    int i;
+    //+3 Cards
+    //+4 Cards
+    for (i = 0; i < 4; i++) {
+        drawCard(currentPlayer, state);
+    }
+
+    //discard card from hand
+    discardCard(handPos, currentPlayer, state, 0);
+    return 0;
+}
+
+// Outpost Card Logic
+int outpostLogic(int currentPlayer, struct gameState *state, int handPos){
+    //set outpost flag
+    state->outpostPlayed++;
+
+    //discard card
+    discardCard(handPos, currentPlayer, state, 0);
+    return 0;
+}
+
+// Remodel Card Logic
+int remodelLogic(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2){
+    int j;
+    int i;
+    j = state->hand[currentPlayer][choice1];  //store card we will trash
+
+    if ((getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2)) {
+        return 0;
+        // -1
+    }
+
+    gainCard(choice2, state, 0, currentPlayer);
+
+    //discard card from hand
+    discardCard(handPos, currentPlayer, state, 0);
+
+    //discard trashed card
+    for (i = 0; i < state->handCount[currentPlayer]; i++) {
+        if (state->hand[currentPlayer][i] == j) {
+            discardCard(i, currentPlayer, state, 0);
+            break;
+        }
+    }
+
+    return 0;
+}
+
+// Treasure Map Card Logic
+int treasuremapLogic(int currentPlayer, struct gameState *state, int handPos){
+    int i;
+    int index;
+    //search hand for another treasure_map
+    index = -1;
+    for (i = 0; i < state->handCount[currentPlayer]; i++) {
+        if (state->hand[currentPlayer][i] == treasure_map && i != handPos) {
+            index = i;
+            break;
+        }
+    }
+    if (index > -1) {
+        //trash both treasure cards
+        discardCard(handPos, currentPlayer, state, 1);
+        discardCard(index, currentPlayer, state, 1);
+
+        //gain 4 Gold cards
+        for (i = 0; i < 4; i++) {
+            gainCard(gold, state, 1, currentPlayer);
+        }
+
+        //return success
+        return 1;
+    }
+
+    //no second treasure_map found in hand
+    return -1;
+}
+
+// Sea Hag Card Logic
+int seahagLogic(int currentPlayer, struct gameState *state, int handPos){
+    int i;
+    for (i = 0; i < state->numPlayers; i++) {
+        if (i != currentPlayer) {
+            state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
+            state->deckCount[i]--;
+            state->discardCount[i]++;
+            state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
+        }
+    }
+    return 0;
+}
 
 //end of dominion.c
 

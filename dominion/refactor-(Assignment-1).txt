@@ -1,0 +1,19 @@
+Assignment 1 (refactoring)
+Nathan Healea
+April 18, 2016
+CS 362
+
+Process of Refactoring
+* When refactoring I copied the contents of the case statements in to a function with an appropriate function name
+  * ex smithLogic
+* Once a function was created I added a function definition to the dominion.h file.
+* In side the function header definition I made sure the appropriate variabled defined and parameters passed to the function.
+
+Cards Refactored
+* Smith
+* Outpost
+* Seahag
+* Treasure Map
+* Remodel
+
+Bugs Found

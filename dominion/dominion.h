@@ -128,4 +128,14 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+int smithyLogic(int currentPlayer, struct gameState *state, int handPos);
+
+int outpostLogic(int currentPlayer, struct gameState *state, int handPos);
+
+int remodelLogic(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2);
+
+int treasuremapLogic(int currentPlayer, struct gameState *state, int handPos);
+
+int seahagLogic(int currentPlayer, struct gameState *state, int handPos);
+
 #endif
