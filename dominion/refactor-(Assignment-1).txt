@@ -16,4 +16,3 @@ Cards Refactored
 * Treasure Map
 * Remodel
 
-Bugs Found
