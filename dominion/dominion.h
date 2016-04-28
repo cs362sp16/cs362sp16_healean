@@ -7,6 +7,7 @@
 #define MAX_DECK 500
 
 #define MAX_PLAYERS 4
+#define MIN_PLAYERS 2
 
 #define DEBUG 0
 

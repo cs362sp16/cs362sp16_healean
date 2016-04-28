@@ -1,0 +1,31 @@
+Unittest 1 (initialization)
+-- No bugs where found
+-- Game initialization returned game state correctly
+
+Unittest 2 (Shuffle)
+-- No bugs where found
+-- Decks where shuffled
+
+Unittest 3 (numHandCards)
+-- No bugs found
+-- Correct hand count returned for player
+
+Unittest 4 (whoseTurn)
+-- No bugs found
+-- Correct play was returned
+
+Cardtest 1 (great_hall)
+-- No bugs found
+-- Number of actions taken was correct
+
+Cardtest 2 (gardens)
+-- As far as I can tell there were not bugs.
+-- Card return -1, which is the value returned in cardeffect
+
+Cardtest 3 (Smithy)
+-- No bugs where found
+-- Correct number of cards added to hand
+
+Cardtest 4 (outpost)
+-- No bugs found
+-- outpost count was increased correctly

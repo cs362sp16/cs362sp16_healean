@@ -1,0 +1,50 @@
+Unittest 1 (initialization)
+-- Lines executed:67.69% of 65
+-- Used to check if the initialization of the game worked proerly,
+    I check many different gamestate properties and compared them
+    to what the initialization function specified
+-- I querious to why my overage was low. I should have hit all possibilities
+    of initializing a game.
+
+Unittest 2 (Shuffle)
+-- Lines executed:77.50% of 40
+-- Shuffled was check to make sure deck were shuffle once a game was
+    a game was initialized.
+-- I speculate that my coverage was low do to not initializing the game and
+    just making decks and shuffling them.
+
+Unittest 3 (numHandCards)
+-- Lines executed:75.61% of 41
+-- I was check to make sure the the correct number of cards where passed
+    back from the numHandCards.
+-- I speculate that my coverage was low do to not initializing the game
+    and just force feeding cards in to hands.
+
+Unittest 4 (whoseTurn)
+-- Lines executed:78.26% of 23
+-- For this one I set a play for the current turn, then called the whoesTurn function
+    then compared it to the player I se it to.
+-- Just like test 2 and 3 my test coverage was low to do not initializing the game.
+
+Cardtest 1 (great_hall)
+-- Lines executed:87.50% of 32
+-- For great_hall, I make sure that the numAction was increased to ensure that the method worked.
+-- Another way that would have work was looked at the deck cout and discard pile after running the test.
+
+Cardtest 2 (gardens)
+-- Lines executed:87.88% of 33
+-- Gardens was interesting to test because it only returns a -1 with no other action, so to test
+    this I just made sure I received a -1 from card effect.
+-- What is interesting for this is that I didnt get a 100% code coverage event thought is only tested on switch case.
+
+Cardtest 3 (smithy)
+-- Lines executed:87.50% of 32
+-- For Smithy I check the card count before and after the cardEffect function call. This was to make sure that
+    I received three cards and discarded on card.
+-- Another way of testing this would be also beck the player deck and discard pile.
+
+Cardtest 4 (outpost)
+-- Lines executed:87.10% of 31
+-- For Outpost I tested to make sure that outpost was increased once cardEffect was called. I held the current
+    count and compared it to the count after words.
+-- I not sure how else to check this test cardEffect becase it only does one thing.
