@@ -22,6 +22,10 @@ set(CARDTEST2 cardtest2.c ${DOMINION})
 set(CARDTEST3 cardtest3.c ${DOMINION})
 set(CARDTEST4 cardtest4.c ${DOMINION})
 
+set(RANDOMADV randomtestadventurer.c ${DOMINION})
+set(RANDMOMCARD1 randomcard1.c ${DOMINION})
+set(RANDMOMCARD2 randomcard2.c ${DOMINION})
+
 add_executable(unittest1 ${UNITTEST1})
 add_executable(unittest2 ${UNITTEST2})
 add_executable(unittest3 ${UNITTEST3})
@@ -31,3 +35,9 @@ add_executable(cardtest1 ${CARDTEST1})
 add_executable(cardtest2 ${CARDTEST2})
 add_executable(cardtest3 ${CARDTEST3})
 add_executable(cardtest4 ${CARDTEST4})
+
+
+add_executable(randomtestadventurer ${RANDOMADV})
+add_executable(randomcard1 ${RANDMOMCARD1})
+add_executable(randomcard2 ${RANDMOMCARD2})
+

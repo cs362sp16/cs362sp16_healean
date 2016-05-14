@@ -1,0 +1,5 @@
+With random testing I find its not to check areas where you might not have though. During the testing process I was continuously running into segfalt errors, so I would say that random testing is really good to find segfalts. When it came to getting code coverage its I find that is harder to active higher code coverage with random testing because you may never hit a section of code.
+
+What I also find annoying with test coverage is that I wasnt getting 100% code coverage with card effect. The card that I was testint was "garden" which only returned -1. So even though I hit that line of code since the rest of fucntion is not used 100% could not be obtained. That also happened with "smithy"
+
+Compare Unit test to random testing I see that unit testing had more test coverage then random testing. This goes back to my hypothis on random testing and not being able to his section of code do to randomness not being generated. 
