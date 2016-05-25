@@ -1,0 +1,48 @@
+#!/bin/bash
+
+display_usage() {
+ echo "Usage: $0 <path to compairing project> <seed>" >&2
+ exit 1
+}
+
+
+if [ "$#" < 1]; then
+   display_usage
+fi
+
+cws=$(pwd)
+
+# Flag for seed if ony is not given
+seed=-1
+
+# Storing Arguments
+if [ "$#" == 1 ]; then
+ compDir="$1"
+fi
+
+if [ "$#" == 2 ]; then
+ compDir="$1"
+ seed="$2"
+fi
+
+# [My Project Directory]: running make file
+make clean
+make all
+make testdominion
+
+# compiling other domion code
+cd $compDir
+make clean
+make all
+make testdominion
+
+cd $cws
+
+diff --suppress-common-lines testdominion.out $compDir/testdominion.out > diffFile
+ 
+if [[ -s diffFile ]] ; then
+   echo "TEST FAILED"
+else
+   echo "TEST SUCCESS"
+fi ;
+

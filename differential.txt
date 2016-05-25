@@ -1,0 +1,9 @@
+  When compairing the two files i find that it hard to determin major differnece since the output of each project was different.
+I find that the way to determin which one is correct would have to be code coverage, but at the same time that only check which
+on covers more code. 
+
+  When doing the diff I was able to get 88.21% coverage and my classmates was 45.39%. Now still I find that is hard to say that mine 
+is more corret then my classmates. I fidnt hat The reason my test coverage was so high was due to covering more cards then my classmates.
+
+  Now some that I did noticed that I was not able to get the test to pass. Im not sure if this is from my test code or just sheer diffence
+between the output of files.
