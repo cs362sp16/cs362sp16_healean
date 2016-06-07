@@ -16,6 +16,7 @@
 #include <time.h>
 #include <string.h>
 #include <math.h>
+#define MIN_PLAYERS 2
 
 
 int main(int argc, char **argv) {
@@ -35,6 +36,7 @@ int main(int argc, char **argv) {
     // Testing Result
     int testResult = 0;
     int overall = 0;
+    int expectedHandCount = 0;
 
     // Testing parameters
     int card = smithy; //Set the flag for the current card
@@ -55,16 +57,20 @@ int main(int argc, char **argv) {
 
             int testHandCount = gamestate->handCount[whoseTurn(gamestate)];
 
-            // Testing great_hall
+            // Testing smithy
             testResult = cardEffect(card, choice1, choice2, choice3, gamestate, handPos, bonus);
+
+            // Get hand count after card effect
+            expectedHandCount = testHandCount + 2;
 
             if (testResult == -1) {
                 printf("cardEffect outpost return: \n", testResult);
                 overall = 1;
             }
             else if (testResult == 0) {
-                if (gamestate->handCount[whoseTurn(gamestate)] == (testHandCount  + 2)) {
-                    printf("cardEffect outpost: Failed \n");
+            if (gamestate->handCount[whoseTurn(gamestate)] != expectedHandCount) {
+                    printf("cardEffect smithy: Failed \n");
+                    printf("\tExpected: %d, actual: %d\n",expectedHandCount, gamestate->handCount[whoseTurn(gamestate)]);
                     overall = 1;
                 }
             }

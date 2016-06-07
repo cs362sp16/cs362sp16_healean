@@ -16,6 +16,8 @@
 #include <string.h>
 #include <math.h>
 
+#define MIN_PLAYERS 2
+
 
 int main(int argc, char **argv) {
 

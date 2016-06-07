@@ -1,0 +1,17 @@
+Bug Report (InitializeGame)
+
+This bug is with int he initializeGame funciton. When 
+the game is initialize each player is to get 5 cards.
+After examining the game state I have found that 
+no cards are givng to the player.
+
+The way to produce this error is to just initialize the game
+with any aound of players. You will find that no user will be 
+givig cards to there hand.
+
+The priority and severity of this bug it hight priority and 
+high severity. I would say the severity is high becase with out
+cards the game cannot be played this would result in a stalled
+session of the game. Aslo the priority is hight becase it is of
+the main funciton of the game and that pice of code runs everytime
+again is being played.

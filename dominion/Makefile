@@ -80,7 +80,7 @@ player: player.c interface.o
 
 all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomcard1 randomcard2 testdominion
 
-test: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest3 cardtest4 randomtestadventurer randomcard1 randomcard2 testdominion
+test: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomcard1 randomcard2 testdominion
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomcard1 randomcard2 testdominion player.exe *.gcov *.gcda *.gcno *.so *.a *.dSYM *.out
+	rm -rf *.o playdom.exe playdom test.exe test player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomcard1 randomcard2 testdominion player.exe *.gcov *.gcda *.gcno *.so *.a *.dSYM *.out

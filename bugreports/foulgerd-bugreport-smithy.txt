@@ -1,0 +1,18 @@
+Bug Report 1 (Smithy)
+
+For the first bug I looked for was in smithy. Smithy is suppost 
+to add three cards to the hand the and then discard one card increasing
+the hand count by 2. In your case, smithy's card effect only gives the
+user a single card but that card is then discarded so the players hand
+size in never increased.
+
+The way to produce this bug is to play a smith card and check the game state 
+hand count for that player. If the hand count has not been inceased by two then
+the error has accured. This can be triggered by calling cardEffect with a smithy
+card value.
+
+The priority and severity of this error would be high proprity and low severity.
+Becase each user will have the same effect the severity of the problem is low
+since each user will have the same out come and no one is gain an advantage. 
+The priority is high becase it is a core functionaly of the game and smith is 
+played a lot so it will need to be taken care of. 

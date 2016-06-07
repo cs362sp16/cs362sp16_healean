@@ -1,0 +1,17 @@
+Bug Report 2 (Village)
+
+An error was found the card effect village. I notice that
+the number of action taken was not correct after the card
+was played. When village is playted the number of action 
+is to inceassed by 2. In your coud the number of action 
+is increaded by 3.
+
+The way to produce this errer is to call cardEffect with
+villiage as the speficied card to be played. You will notice 
+that the nimber of action taken has been inceashed by 2. 
+
+The priority and severity would be high priority and low severity.
+Since the effect is the same for everyone who plays a village and
+doesnt give anyone an avantage the severity would be low. But sicne 
+it is a main functioning card that is played the does need tobe fixed
+so it give it a high priority.

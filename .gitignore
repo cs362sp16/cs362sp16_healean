@@ -1,3 +1,5 @@
 dominion/*.o
 dominion/*.gcno
 dominion/.idea/
+dominion/mutants
+dominion/mutant_output

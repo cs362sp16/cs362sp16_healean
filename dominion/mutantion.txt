@@ -1,0 +1,17 @@
+Mutaution Testing Results
+Total Mutantions: 227
+Passed Mutantions: 171
+Failed Mutantions: 56
+
+
+My results where not what I was expecting. I figured
+that I would have caught more mutants then I actually did.
+This could be do to a number of reason but it deffenly says
+that my test suit is not that good.
+
+Something that I noticed is that it takes a log time to run
+a mutant test. Also quite abut of time to set up. I had to shorten
+my run time becase it was taking 30 plus minutes to execute.
+When doing mutant testing I feel that you also introduce some
+error when building the tester. The first time that I ran my script
+I was not compiling the right dominion.o file andit said that I had not mutants.

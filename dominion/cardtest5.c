@@ -1,10 +1,10 @@
 /*
  * Created by: Nathan Healea
- * Date: April 26, 2016
- * Assignment 2
+ * Date: June 6, 2016
+ * Final Project
  * File name: cardtest3.c
  * Description:
- *      Testing card effect outpost
+ *      Testing card effect village
  */
 
 #include "dominion.h"
@@ -33,11 +33,13 @@ int main(int argc, char **argv) {
     int j = 0;
 
     // Testing Result
-    int testResult = 0;
     int overall = 0;
+    int cardEffectResult = 0;
+    int expectedActionTaken = 0;
+    int acualActionTaken = 0;
 
     // Testing parameters
-    int card = outpost; //Set the flag for the current card
+    int card = village; //Set the flag for the current card
     int choice1 = -1;
     int choice2 = -1;
     int choice3 = -1;
@@ -53,18 +55,26 @@ int main(int argc, char **argv) {
             // Initializing game
             initializeGame(i, kCard, j, gamestate);
 
-            int testOutPostPlayed = gamestate->outpostPlayed;
+            // Get num of action
+            expectedActionTaken = gamestate->numActions + 2;
+
+            printf("Number of Actions: %d \n", gamestate->numActions);
 
             // Testing great_hall
-            testResult = cardEffect(card, choice1, choice2, choice3, gamestate, handPos, bonus);
+            cardEffectResult = cardEffect(card, choice1, choice2, choice3, gamestate, handPos, bonus);
 
-            if (testResult == -1) {
-                printf("cardEffect outpost return: \n", testResult);
+            acualActionTaken = gamestate->numActions;
+
+
+
+            if (cardEffectResult == -1) {
+                printf("cardEffect Village return: \n", cardEffectResult);
                 overall = 1;
             }
-            else if (testResult == 0) {
-                if (gamestate->outpostPlayed != (testOutPostPlayed + 1)) {
-                    printf("cardEffect outpost: Failed \n");
+            else if (cardEffectResult == 0) {
+                if (expectedActionTaken != acualActionTaken) {
+                    printf("cardEffect Village: Failed \n");
+                    printf("\tExpected: %d, Actual: %d\n", expectedActionTaken, acualActionTaken);
                     overall = 1;
                 }
             }

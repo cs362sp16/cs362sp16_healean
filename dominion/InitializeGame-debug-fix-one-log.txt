@@ -1,0 +1,148 @@
+InitializeGame Log File: fix one run 
+If not message appear after below line,
+except for test run numbers, then all test pass.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+/* ---- Test: 1 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 2 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 3 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 4 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 5 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 6 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 7 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 8 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 9 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 10 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 11 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 12 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 13 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 14 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 15 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 16 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 17 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+
+/* ---- Test: 18 ---- */ 
+Player: 0
+	 Test deckCount: fail 
+		 Expected: 10, Actual: 0 
+Player: 0
+	 Test handCount: fail 
+		 Expected: 5, Actual: 10 
+

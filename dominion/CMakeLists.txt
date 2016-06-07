@@ -4,10 +4,10 @@ project(dominion)
 
 #[[set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")]]
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fpic -coverage -lm")
-
-add_custom_target(dominion COMMAND make -C ${mytest_SOURCE_DIR}
-        CLION_EXE_DIR=${PROJECT_BINARY_DIR})
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fpic -coverage -lm")
+#
+#add_custom_target(dominion COMMAND make -C ${mytest_SOURCE_DIR}
+#        CLION_EXE_DIR=${PROJECT_BINARY_DIR})
 
 
 set(DOMINION dominion.h dominion.c rngs.h rngs.c)
@@ -21,6 +21,7 @@ set(CARDTEST1 cardtest1.c ${DOMINION} testdominion.h)
 set(CARDTEST2 cardtest2.c ${DOMINION})
 set(CARDTEST3 cardtest3.c ${DOMINION})
 set(CARDTEST4 cardtest4.c ${DOMINION})
+set(CARDTEST5 cardtest5.c ${DOMINION})
 
 set(RANDOMADV randomtestadventurer.c ${DOMINION})
 set(RANDMOMCARD1 randomcard1.c ${DOMINION})
@@ -37,6 +38,7 @@ add_executable(cardtest1 ${CARDTEST1})
 add_executable(cardtest2 ${CARDTEST2})
 add_executable(cardtest3 ${CARDTEST3})
 add_executable(cardtest4 ${CARDTEST4})
+add_executable(cardtest5 ${CARDTEST5})
 
 add_executable(randomtestadventurer ${RANDOMADV})
 add_executable(randomcard1 ${RANDMOMCARD1})

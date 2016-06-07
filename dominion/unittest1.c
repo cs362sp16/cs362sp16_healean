@@ -22,15 +22,16 @@
 #define MAX_PLAYERS 4
 #define MIN_PLAYERS 2
 
+
 /**
  * Prints an error message with test name and result
  */
-void printError(char *test, char *result, int expected, int acutal);
+void printError(FILE* fp, char *test, char *result, int expected, int acutal);
 
 /**
  * Check a given card in the gamestate to expected value.
  */
-void checkSupplyCount(char* card, struct gameState *state,  enum CARD c, int expected);
+void checkSupplyCount(FILE* fp, char* card, struct gameState *state,  enum CARD c, int expected);
 
 int main(int argc, char **argv) {
 
@@ -47,10 +48,22 @@ int main(int argc, char **argv) {
     int test = 1;
     int copperAct = 0;
 
+
+    FILE *fp;  // Log file pointer
+
+    fp = fopen("InitializeGame-debug-fix-two-log.txt", "w+");  // Open log file
+
+    // Initializing log files
+    fprintf(fp, "InitializeGame Log File: fix two run \n");
+    fprintf(fp, "If not message appear after below line,\n");
+    fprintf(fp, "except for test run numbers, then all test pass.\n");
+    fprintf(fp, "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * \n");
+
     for (i = MIN_PLAYERS; i < MAX_PLAYERS; i++) { // number of players
         for (j = 1; j < 10; j++) { // number of seeds
             // Displaying test number
             printf("/* ---- Test: %d ---- */ \n", test);
+            fprintf(fp, "/* ---- Test: %d ---- */ \n", test);
             init = 5;
             // Initializing game
             init = initializeGame(i, kCard, j, gamestate);
@@ -59,83 +72,94 @@ int main(int argc, char **argv) {
                 printf("Game State Initialize: Failed \n");
                 printf("Expected: %d or %d, Actual: %d \n", 5, 0, init);
                 printf("\n");
+
+                fprintf(fp,"Game State Initialize: Failed \n");
+                fprintf(fp,"Expected: %d or %d, Actual: %d \n", 5, 0, init);
+                fprintf(fp,"\n");
             }
 
             if (gamestate->numPlayers != i) { // Testing Number of Players
-                printError("NumPlayer", "Failed", i, gamestate->numPlayers);
+                printError(fp, "NumPlayer", "Failed", i, gamestate->numPlayers);
             }
 
             // Testing Supply Count
             if (gamestate->numPlayers == 2) { // Test for two players
-                checkSupplyCount("curse", gamestate, curse, 10);
-                checkSupplyCount("estate", gamestate, estate, 8);
-                checkSupplyCount("duchy", gamestate, duchy, 8);
-                checkSupplyCount("province", gamestate, province, 8);
+                checkSupplyCount( fp, "curse", gamestate, curse, 10);
+                checkSupplyCount( fp, "estate", gamestate, estate, 8);
+                checkSupplyCount( fp, "duchy", gamestate, duchy, 8);
+                checkSupplyCount( fp, "province", gamestate, province, 8);
             }
             else if (gamestate->numPlayers == 3) { // Test for three players
-                checkSupplyCount("curse", gamestate, curse, 20);
-                checkSupplyCount("estate", gamestate, estate, 12);
-                checkSupplyCount("duchy", gamestate, duchy, 12);
-                checkSupplyCount("province", gamestate, province, 12);
+                checkSupplyCount( fp, "curse", gamestate, curse, 20);
+                checkSupplyCount( fp, "estate", gamestate, estate, 12);
+                checkSupplyCount( fp, "duchy", gamestate, duchy, 12);
+                checkSupplyCount( fp, "province", gamestate, province, 12);
             }
             else if (gamestate->numPlayers > 3) { // Test for more then three players
-                checkSupplyCount("curse", gamestate, curse, 30);
-                checkSupplyCount("estate", gamestate, estate, 12);
-                checkSupplyCount("duchy", gamestate, duchy, 12);
-                checkSupplyCount("province", gamestate, province, 12);
+                checkSupplyCount( fp, "curse", gamestate, curse, 30);
+                checkSupplyCount( fp, "estate", gamestate, estate, 12);
+                checkSupplyCount( fp, "duchy", gamestate, duchy, 12);
+                checkSupplyCount( fp, "province", gamestate, province, 12);
             }
 
             // Checking coins
             // copper = 60 - (7 * number of players)
             copperAct = (60 - (7 * i));
-            checkSupplyCount("copper", gamestate, copper, copperAct);
-            checkSupplyCount("silver", gamestate, silver, 40);
-            checkSupplyCount("gold", gamestate, gold, 30);
+            checkSupplyCount( fp, "copper", gamestate, copper, copperAct);
+            checkSupplyCount( fp, "silver", gamestate, silver, 40);
+            checkSupplyCount( fp, "gold", gamestate, gold, 30);
 
-            // Could not figure out now to test Kingdon cards
+            // Could not figure out now to test Kingdom cards
 
             // Testing players decks, hand, discard
             int k = 0;
             for (k = 0; k < gamestate->numPlayers; k++) {
-
                 if (gamestate->deckCount[k] == 0) { // Testing Player Deck
-                    printError("deckCount", "fail", 10, gamestate->deckCount[j]);
+                    printf("Player: %d \n", k);
+                    fprintf(fp, "Player: %d\n", k);
+                    printError(fp, "deckCount", "fail", 10, gamestate->deckCount[k]);
                 }
 
-                if (gamestate->handCount[k] != 5 && k == 0) { // Testing Player handcount
-                    printf("Player: %d", k);
-                    printError("handCount", "fail", 5, gamestate->handCount[j]);
-                }
-                else if (gamestate->handCount[k] != 0 && k > 0) {
-                    printf("Player: %d", k);
-                    printError("handCount", "fail", 5, gamestate->handCount[j]);
+                if (gamestate->handCount[k] != 5) { // Testing Player handcount
+                    printf("Player: %d \n", k);
+                    fprintf(fp, "Player: %d\n", k);
+                    printError(fp, "handCount", "fail", 5, gamestate->handCount[k]);
                 }
 
                 if (gamestate->discardCount[k] != 0) {  // Testing Player discardcount
-                    printf("Player: %d", k);
-                    printError("discardCount", "fail", 5, gamestate->discardCount[j]);
+                    printf("Player: %d \n", k);
+                    fprintf(fp, "Player: %d\n", k);
+                    printError(fp, "discardCount", "fail", 5, gamestate->discardCount[k]);
                 }
 
             }
 
-
             test++;
+            gamestate = newGame();
+            printf("\n");
+            fprintf(fp, "\n");
         }
     }
-    printf("\n");
+
+
+    // Close log file
+    fclose(fp);
 
     return 0;
 }
 
-void printError(char *test, char *result, int expected, int acutal) {
+void printError(FILE* fp, char *test, char *result, int expected, int acutal) {
     // printing test
-    printf("Test %s: %s", test, result);
-    printf(" Expected: %d, Actual: %d \n", expected, acutal);
+    printf("\t Test %s: %s \n", test, result);
+    printf("\t\t Expected: %d, Actual: %d \n", expected, acutal);
+
+    fprintf(fp,"\t Test %s: %s \n", test, result);
+    fprintf(fp, "\t\t Expected: %d, Actual: %d \n", expected, acutal);
 }
 
-void checkSupplyCount(char* card, struct gameState *state,  enum CARD c, int expected) {
+void checkSupplyCount(FILE* fp, char* card, struct gameState *state,  enum CARD c, int expected) {
     if (state->supplyCount[c] != expected) { // Testing province
-        printError(card, "failed", expected, state->supplyCount[c]);
+        printError(fp, card, "failed", expected, state->supplyCount[c]);
     }
 
 }

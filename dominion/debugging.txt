@@ -1,0 +1,66 @@
+The error that I decided to work one
+was won I found in foulgerd dominion.c code.
+When debugging the initializeGame code I noticed 
+that the players hand was never getting cards. So
+I ran my Unittest.c test on mt initializeGame code
+and found that it too was giving me the same error. 
+I was able to discover this error by using the first rule
+in Agans' Debugging Rules "Understand the System".
+
+Agans' Debugging Rule #1 "Understaing the System" tells us 
+that debugging a system you dont uderstant is point less and 
+that subject knowledge matters and that you need to understand
+the problem. So by reading the rules of dominion and how to set
+up the game. I was able to see that the number of cards in the 
+players begining hand was not correct. 
+
+This lead me to Agans' Debugging Rule #2 "Make it fail." After
+noticing the errror I wrote test that would fail if the number
+of cards was not correct, then display the difference in the
+hands. I found that some times the player would get no cards 
+and other times the player gould get 4 cards but those cards 
+where not valid cardnumbers. 
+
+After making a failing test, Agans' Debugging Rule #3 
+"Quit Thinking and Look" and sure enought. Inside the the 
+initializeGame funciton I found commented code for the initialization
+of the player hand. If you noticed in Code Snippit 1 you will see that
+lines 6 - 10 had been commented out.
+
+Code Snippit 1:
+Line 1:  //draw player hands
+Line 2:     for (i = 0; i < numPlayers; i++) {
+Line 3:         //initialize hand size to zero
+Line 4:         state->handCount[i] = 0;
+Line 5:         state->discardCount[i] = 0;
+Line 6:         //draw 5 cards
+Line 7:         // for (j = 0; j < 5; j++)
+Line 8:         //  {
+Line 9:         //    drawCard(i, state);
+Line 10:        //  }
+Line 11:     }
+
+After uncommenting the lines 6 - 10 all the players hand counts were
+fixed except for player 1 whos hand count was set to five but his deck count
+was 0. So this ment that he was still was drawing to many cards in the game 
+initialization. Looking at the bottom the initializeGame method player one
+get his game initialize but also draws 5 more cards. So to prevent fix the 
+error I commented out line 1 - 5 in the method inorder to prevent the first
+play from drawing more then 5 cards when the game is initialized.
+
+Line 1: state->handCount[state->whoseTurn] = 0;
+Line 2:     //Moved draw cards to here, only drawing at the start of a turn
+Line 3:    for (it = 0; it < 5; it++) {
+Line 4:       drawCard(state->whoseTurn, state);
+Line 5:    }
+
+When working to fix this bug I use Agans' Degubbing Rule #5 "Change One Thing at a
+Time" to make sure that I monerterd how my changes effect on the bug that I was working
+on. By using this rule I make sure that code that I emplimented did not introduced new bugs.
+
+* * * Files to used * * *
+-- unittest1.c
+-- InitializeGame-debug-initial-log.txt
+-- InitializeGame-debug-fix-one-log.txt
+-- InitializeGame-debug-fix-two-log.txt
+
